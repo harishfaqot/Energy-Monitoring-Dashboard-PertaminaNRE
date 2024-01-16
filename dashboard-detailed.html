@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Dashboard - EMS-Uper</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/logo1.png" rel="icon">
+  <link href="assets/img/logo1.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: NiceAdmin - v2.4.1
+  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body onload="myFunction()">
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="header fixed-top d-flex align-items-center">
+
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="index.html" class="logo d-flex align-items-center">
+        <img src="assets/img/logo1.png" alt="">
+        <span class="d-none d-lg-block">EMS-Uper</span>
+      </a>
+      <i class="bi bi-list toggle-sidebar-btn"></i>
+    </div><!-- End Logo -->
+
+  </header><!-- End Header -->
+
+  <!-- ======= Sidebar ======= -->
+  <aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#components-db" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-grid"></i>
+          <span>Dashboard</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="components-db" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="index.html">
+              <i class="bi bi-circle"></i><span>Dashboard</span>
+            </a>
+          </li>
+          <li>
+            <a href="detailed-dashboard.html">
+              <i class="bi bi-circle"></i><span>Detailed-Dashboard</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Dashboard Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-menu-button-wide"></i><span>Room Reports</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="room-101.html">
+              <i class="bi bi-circle"></i><span>Room 101</span>
+            </a>
+          </li>
+          <li>
+            <a href="room-102.html">
+              <i class="bi bi-circle"></i><span>Room 102</span>
+            </a>
+          </li>
+          <li>
+            <a href="room-103.html">
+              <i class="bi bi-circle"></i><span>Room 103</span>
+            </a>
+          </li>
+          <li>
+            <a href="room-104.html">
+              <i class="bi bi-circle"></i><span>Room 104</span>
+            </a>
+          </li>
+          <li>
+            <a href="room-105.html">
+              <i class="bi bi-circle"></i><span>Room 105</span>
+            </a>
+          </li>
+          <li>
+            <a href="room-106.html">
+              <i class="bi bi-circle"></i><span>Room 106</span>
+            </a>
+          </li>
+          <li>
+            <a href="room-107.html">
+              <i class="bi bi-circle"></i><span>Room 107</span>
+            </a>
+          </li>
+          <li>
+            <a href="room-108.html">
+              <i class="bi bi-circle"></i><span>Room 108</span>
+            </a>
+          </li>
+          <li>
+            <a href="room-109.html">
+              <i class="bi bi-circle"></i><span>Room 109</span>
+            </a>
+          </li>
+          <li>
+            <a href="room-110.html">
+              <i class="bi bi-circle"></i><span>Room 110</span>
+            </a>
+          </li>
+          <li>
+            <a href="room-111.html">
+              <i class="bi bi-circle"></i><span>Room 111</span>
+            </a>
+          </li>
+          <li>
+            <a href="room-112.html">
+              <i class="bi bi-circle"></i><span>Room 112</span>
+            </a>
+          </li>
+          <li>
+            <a href="room-201.html">
+              <i class="bi bi-circle"></i><span>Room 201</span>
+            </a>
+          </li>
+          <li>
+            <a href="room-202.html">
+              <i class="bi bi-circle"></i><span>Room 202</span>
+            </a>
+          </li>
+          <li>
+            <a href="room-203.html">
+              <i class="bi bi-circle"></i><span>Room 203</span>
+            </a>
+          </li>
+          <li>
+            <a href="room-204.html">
+              <i class="bi bi-circle"></i><span>Room 204</span>
+            </a>
+          </li>
+          <li>
+            <a href="room-205.html">
+              <i class="bi bi-circle"></i><span>Room 205</span>
+            </a>
+          </li>
+          <li>
+            <a href="room-206.html">
+              <i class="bi bi-circle"></i><span>Room 206</span>
+            </a>
+          </li>
+          <li>
+            <a href="room-207.html">
+              <i class="bi bi-circle"></i><span>Room 207</span>
+            </a>
+          </li>
+          <li>
+            <a href="room-208.html">
+              <i class="bi bi-circle"></i><span>Room 208</span>
+            </a>
+          </li>
+          <li>
+            <a href="room-209.html">
+              <i class="bi bi-circle"></i><span>Room 209</span>
+            </a>
+          </li>
+          <li>
+            <a href="room-210.html">
+              <i class="bi bi-circle"></i><span>Room 210</span>
+            </a>
+          </li>
+          <li>
+            <a href="room-211.html">
+              <i class="bi bi-circle"></i><span>Room 211</span>
+            </a>
+          </li>
+          <li>
+            <a href="room-212.html">
+              <i class="bi bi-circle"></i><span>Room 212</span>
+            </a>
+          </li>
+          <li>
+            <a href="room-213.html">
+              <i class="bi bi-circle"></i><span>Room 213</span>
+            </a>
+          </li>
+          <li>
+            <a href="room-214.html">
+              <i class="bi bi-circle"></i><span>Room 214</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Components Nav -->
+    </ul>
+  </aside><!-- End Sidebar-->
+
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Dashboard</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item active">Dashboard</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section dashboard">
+      <div class="row">
+
+        <!-- Left side columns -->
+        <div class="col-lg-8">
+          <div class="row">
+
+            <!-- Sales Card -->
+            <div class="col-xxl-6 col-md-6">
+              <div class="card info-card sales-card">
+
+                <div class="filter">
+                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                    <li class="dropdown-header text-start">
+                      <h6>Filter</h6>
+                    </li>
+
+                    <li><a class="dropdown-item" href="#">Today</a></li>
+                    <li><a class="dropdown-item" href="#">This Month</a></li>
+                    <li><a class="dropdown-item" href="#">This Year</a></li>
+                  </ul>
+                </div>
+
+                <div class="card-body">
+                  <h5 class="card-title">Usage <span>| Today</span></h5>
+
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="bi bi-lightning-charge"></i>
+                    </div>
+                    <div class="ps-3">
+                      <h6>145 kWh</h6>
+                      <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div><!-- End Sales Card -->
+
+            <!-- Revenue Card -->
+            <div class="col-xxl-6 col-md-6">
+              <div class="card info-card revenue-card">
+
+                <div class="filter">
+                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                    <li class="dropdown-header text-start">
+                      <h6>Filter</h6>
+                    </li>
+
+                    <li><a class="dropdown-item" href="#">Today</a></li>
+                    <li><a class="dropdown-item" href="#">This Month</a></li>
+                    <li><a class="dropdown-item" href="#">This Year</a></li>
+                  </ul>
+                </div>
+
+                <div class="card-body">
+                  <h5 class="card-title">Expected Price <span>| Today</span></h5>
+
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="bi bi-currency-dollar"></i>
+                    </div>
+                    <div class="ps-3">
+                      <h6>Rp35,264</h6>
+                      <span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div><!-- End Revenue Card -->
+
+            <!-- Reports -->
+            <div class="col-12">
+              <div class="card">
+
+                <div class="filter">
+                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                    <li class="dropdown-header text-start">
+                      <h6>Filter</h6>
+                    </li>
+
+                    <li><a class="dropdown-item" href="#">Today</a></li>
+                    <li><a class="dropdown-item" href="#">This Month</a></li>
+                    <li><a class="dropdown-item" href="#">This Year</a></li>
+                  </ul>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">Reports Room 201 <input type="date" id="myDate" value="2022-09-18"> <button onclick="myFunction()">Show</i></button></h5>
+                  <div id="R201"></div>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">Reports Room 202</h5>
+                  <div id="R202"></div>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">Reports Room 203</h5>
+                  <div id="R203"></div>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">Reports Room 204</h5>
+                  <div id="R204"></div>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">Reports Room 205</h5>
+                  <div id="R205"></div>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">Reports Room 206</h5>
+                  <div id="R206"></div>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">Reports Room 207</h5>
+                  <div id="R207"></div>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">Reports Room 208</h5>
+                  <div id="R208"></div>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">Reports Room 209</h5>
+                  <div id="R209"></div>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">Reports Room 210</h5>
+                  <div id="R210"></div>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">Reports Room 211</h5>
+                  <div id="R211"></div>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">Reports Room 212</h5>
+                  <div id="R212"></div>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">Reports Room 213</h5>
+                  <div id="R213"></div>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">Reports Room 214</h5>
+                  <div id="R214"></div>
+                </div>
+
+              </div>
+            </div><!-- End Reports -->
+          </div>
+        </div><!-- End Left side columns -->
+
+        <!-- Right side columns -->
+        <div class="col-lg-4">
+
+          <!-- Recent Sales -->
+          <div class="col-12">
+            <div class="card recent-sales overflow-auto">
+
+              <div class="filter">
+                <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                  <li class="dropdown-header text-start">
+                    <h6>Filter</h6>
+                  </li>
+
+                  <li><a class="dropdown-item" href="#">Today</a></li>
+                  <li><a class="dropdown-item" href="#">This Month</a></li>
+                  <li><a class="dropdown-item" href="#">This Year</a></li>
+                </ul>
+              </div>
+
+              <div class="card-body">
+                <h5 class="card-title">Recent Usage <span>| Today</span></h5>
+
+                <table class="table table-borderless datatable">
+                  <thead>
+                    <tr>
+                      <th scope="col">Room</th>
+                      <th scope="col">People</th>
+                      <th scope="col">KWh</th>
+                      <th scope="col">Price</th>
+                      <th scope="col">Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row"><a href="#">101</a></th>
+                      <td>Ferdi, Ashar, Erick</td>
+                      <td>10.1 KWh</td>
+                      <td>Rp53.000</td>
+                      <td><span class="badge bg-success">Normal</span></td>
+                    </tr>
+                    <tr>
+                      <th scope="row"><a href="#">102</a></th>
+                      <td>Empty</td>
+                      <td>9.1 KWh</td>
+                      <td>Rp45.000</td>
+                      <td><span class="badge bg-warning">Warning</span></td>
+                    </tr>
+                    <tr>
+                      <th scope="row"><a href="#">103</a></th>
+                      <td>Aziz, Sandi, Ochin</td>
+                      <td>10.1 KWh</td>
+                      <td>Rp53.000</td>
+                      <td><span class="badge bg-danger">Over</span></td>
+                    </tr>
+                    <tr>
+                      <th scope="row"><a href="#">104</a></th>
+                      <td>Mas Hamzah</td>
+                      <td>10.1 KWh</td>
+                      <td>Rp53.000</td>
+                      <td><span class="badge bg-success">Normal</span></td>
+                    </tr>
+                    <tr>
+                      <th scope="row"><a href="#">105</a></th>
+                      <td>Arva, Fauzi, Yoel</td>
+                      <td>10.1 KWh</td>
+                      <td>Rp53.000</td>
+                      <td><span class="badge bg-success">Normal</span></td>
+                    </tr>
+                    <tr>
+                      <th scope="row"><a href="#">106</a></th>
+                      <td>Irwan, Fadli</td>
+                      <td>10.1 KWh</td>
+                      <td>Rp53.000</td>
+                      <td><span class="badge bg-success">Normal</span></td>
+                    </tr>
+                    <tr>
+                      <th scope="row"><a href="#">107</a></th>
+                      <td>Ismail, Sufi, Azmi</td>
+                      <td>10.1 KWh</td>
+                      <td>Rp53.000</td>
+                      <td><span class="badge bg-success">Normal</span></td>
+                    </tr>
+                    <tr>
+                      <th scope="row"><a href="#">108</a></th>
+                      <td>Fadil, Rama</td>
+                      <td>10.1 KWh</td>
+                      <td>Rp53.000</td>
+                      <td><span class="badge bg-success">Normal</span></td>
+                    </tr>
+                    <tr>
+                      <th scope="row"><a href="#">109</a></th>
+                      <td>Empty</td>
+                      <td>10.1 KWh</td>
+                      <td>Rp53.000</td>
+                      <td><span class="badge bg-success">Normal</span></td>
+                    </tr>
+                    <tr>
+                      <th scope="row"><a href="#">110</a></th>
+                      <td>Mamed, Dafa</td>
+                      <td>10.1 KWh</td>
+                      <td>Rp53.000</td>
+                      <td><span class="badge bg-success">Normal</span></td>
+                    </tr>
+                    <tr>
+                      <th scope="row"><a href="#">111</a></th>
+                      <td>Firgandi, Dimas</td>
+                      <td>10.1 KWh</td>
+                      <td>Rp53.000</td>
+                      <td><span class="badge bg-success">Normal</span></td>
+                    </tr>
+                    <tr>
+                      <th scope="row"><a href="#">112</a></th>
+                      <td>Juli, Fajri</td>
+                      <td>10.1 KWh</td>
+                      <td>Rp53.000</td>
+                      <td><span class="badge bg-success">Normal</span></td>
+                    </tr>
+                    <tr>
+                      <th scope="row"><a href="#">201</a></th>
+                      <td>Ali, Alta, Abu Dzar, Erwin</td>
+                      <td>10.1 KWh</td>
+                      <td>Rp53.000</td>
+                      <td><span class="badge bg-success">Normal</span></td>
+                    </tr>
+                    <tr>
+                      <th scope="row"><a href="#">202</a></th>
+                      <td>Harish, Pande</td>
+                      <td>10.1 KWh</td>
+                      <td>Rp53.000</td>
+                      <td><span class="badge bg-success">Normal</span></td>
+                    </tr>
+                    <tr>
+                      <th scope="row"><a href="#">203</a></th>
+                      <td>Bintang, Rajib, Fatah</td>
+                      <td>10.1 KWh</td>
+                      <td>Rp53.000</td>
+                      <td><span class="badge bg-success">Normal</span></td>
+                    </tr>
+                    <tr>
+                      <th scope="row"><a href="#">204</a></th>
+                      <td>Empty</td>
+                      <td>10.1 KWh</td>
+                      <td>Rp53.000</td>
+                      <td><span class="badge bg-success">Normal</span></td>
+                    </tr>
+                    <tr>
+                      <th scope="row"><a href="#">205</a></th>
+                      <td>Empty</td>
+                      <td>10.1 KWh</td>
+                      <td>Rp53.000</td>
+                      <td><span class="badge bg-success">Normal</span></td>
+                    </tr>
+                    <tr>
+                      <th scope="row"><a href="#">206</a></th>
+                      <td>Irsyad, Ryan(21)</td>
+                      <td>10.1 KWh</td>
+                      <td>Rp53.000</td>
+                      <td><span class="badge bg-success">Normal</span></td>
+                    </tr>
+                    <tr>
+                      <th scope="row"><a href="#">207</a></th>
+                      <td>Ayi, Gevan, Beno</td>
+                      <td>10.1 KWh</td>
+                      <td>Rp53.000</td>
+                      <td><span class="badge bg-success">Normal</span></td>
+                    </tr>
+                    <tr>
+                      <th scope="row"><a href="#">208</a></th>
+                      <td>Purnata, Zaki</td>
+                      <td>10.1 KWh</td>
+                      <td>Rp53.000</td>
+                      <td><span class="badge bg-success">Normal</span></td>
+                    </tr>
+                    <tr>
+                      <th scope="row"><a href="#">209</a></th>
+                      <td>Empty</td>
+                      <td>10.1 KWh</td>
+                      <td>Rp53.000</td>
+                      <td><span class="badge bg-success">Normal</span></td>
+                    </tr>
+                    <tr>
+                      <th scope="row"><a href="#">210</a></th>
+                      <td>Lasma, Ryan(22)</td>
+                      <td>10.1 KWh</td>
+                      <td>Rp53.000</td>
+                      <td><span class="badge bg-success">Normal</span></td>
+                    </tr>
+                    <tr>
+                      <th scope="row"><a href="#">211</a></th>
+                      <td>Ulul, Adit, Heri</td>
+                      <td>10.1 KWh</td>
+                      <td>Rp53.000</td>
+                      <td><span class="badge bg-success">Normal</span></td>
+                    </tr>
+                    <tr>
+                      <th scope="row"><a href="#">212</a></th>
+                      <td>Mizan, Yoga</td>
+                      <td>10.1 KWh</td>
+                      <td>Rp53.000</td>
+                      <td><span class="badge bg-success">Normal</span></td>
+                    </tr>
+                    <tr>
+                      <th scope="row"><a href="#">213</a></th>
+                      <td>Empty</td>
+                      <td>10.1 KWh</td>
+                      <td>Rp53.000</td>
+                      <td><span class="badge bg-success">Normal</span></td>
+                    </tr>
+                    <tr>
+                      <th scope="row"><a href="#">214</a></th>
+                      <td>Empty</td>
+                      <td>10.1 KWh</td>
+                      <td>Rp53.000</td>
+                      <td><span class="badge bg-success">Normal</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+
+              </div>
+
+            </div>
+          </div><!-- End Recent Sales -->
+        </div><!-- End Right side columns -->
+
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+    <div class="copyright">
+      &copy; Copyright <strong><span>EMS-Uper</span></strong>. All Rights Reserved
+    </div>
+    <div class="credits">
+      <!-- All the links in the footer should remain intact. -->
+      <!-- You can delete the links only if you purchased the pro version. -->
+      <!-- Licensing information: https://bootstrapmade.com/license/ -->
+      <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
+      Designed by <a href="https://www.instagram.com/harishfaqot/">@harishfaqot</a>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/chart.js/chart.min.js"></script>
+  <script src="assets/vendor/echarts/echarts.min.js"></script>
+  <script src="assets/vendor/quill/quill.min.js"></script>
+  <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
+  <script src="assets/vendor/tinymce/tinymce.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-database.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/data.js"></script>
+
+</body>
+
+</html>
