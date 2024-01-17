@@ -14,6 +14,7 @@ var db = firebase.database();
 function getdata(year, month, day, room ){
   var x1 = year.toString()+'/'+month.toString()+'/'+day.toString()
   var x2 = year.toString()+'-'+month.toString()+'-'+day.toString()
+  console.log(x2)
   console.log("getting data for " + x1 +' R'+ room.toString())
   const data = db.ref(x1 +'/room/R' + room.toString());
   data.on('value', handleSuccess, handleError);

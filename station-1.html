@@ -210,14 +210,19 @@
                       <h6>Filter</h6>
                     </li>
 
-                    <li><a class="dropdown-item" href="#">Today</a></li>
-                    <li><a class="dropdown-item" href="#">This Month</a></li>
-                    <li><a class="dropdown-item" href="#">This Year</a></li>
+                    <li><a class="dropdown-item" href="#" onclick="showToday()">Today</a></li>
+                    <li><a class="dropdown-item" href="#" onclick="showMonth()">This Month</a></li>
+                    <li><a class="dropdown-item" href="#" onclick="showYear()">This Year</a></li>
                   </ul>
                 </div>
                 <div class="card-body">
                   <!-- <h5 class="card-title">Reports <input type="date" id="myDate" value="2022-09-18"> <button onclick="myFunction()">Show</i></button></h5> -->
-                  <div id="reportsChart"></div>
+                  <h5 class="card-title">Voltage <span>/Today</span></h5>
+                  <div id="Voltage"></div>
+                  <h5 class="card-title">Current <span>/Today</span></h5>
+                  <div id="Current"></div>
+                  <h5 class="card-title">Power <span>/Today</span></h5>
+                  <div id="Power"></div>
                 </div>
 
               </div>
@@ -389,7 +394,7 @@
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
   <!-- <script src="assets/js/data.js"></script> -->
-  <script src="station.js"></script>
+  <script src="assets/js/station.js"></script>
 
 </body>
 
