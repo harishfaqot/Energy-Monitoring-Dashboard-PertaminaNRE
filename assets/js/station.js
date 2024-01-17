@@ -95,6 +95,7 @@ function showYear(){
 }
 
 function publishChart(idName, data, Xmin, Xmax){
+  console.log(data[0].data[0].y)
   var options = {
     series: data,
     chart: {
@@ -122,6 +123,7 @@ function publishChart(idName, data, Xmin, Xmax){
       curve: 'smooth',
       width: 2
     },
+    yaxis: {min: (data[0].data[0].y)-10, max: (data[0].data[0].y)+10 },
     xaxis: {
       type: 'datetime',
       labels: {
