@@ -10,29 +10,30 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 var db = firebase.database();
 
-showToday();
+document.getElementById("dateshow").textContent = '/Today';
+getData(new Date().getTime() - (3600*24*1000), new Date().getTime(), true);
 
-function getData(Xmin, Xmax){
-  // const data = db.ref("station1/data");
-  var ref = db.ref('station1/data');
-
+function getData(Xmin, Xmax, realtime){
+  var ref = db.ref('station2/data');
   ref.orderByKey().startAt(String(parseInt(Xmin/1000))).endAt(String(parseInt(Xmax/1000))).on('value', handleSuccess, handleError);
 
   function handleError(error){
     console.log(error);
   };
   
-  
   function handleSuccess(snapshot) {
     const key = snapshot.key;
     const data = snapshot.val();
     // console.log(key);
-    console.log(data);
+    // console.log(data);
     const mapData = (property) => Object.keys(data).map((timestamp) => ({ x: parseInt(timestamp) * 1000, y: data[timestamp][property]}));
 
-    const VAB = mapData("VAB");
-    const VBC = mapData("VBC");
-    const VCA = mapData("VCA");
+    const EI = mapData("EI");
+    const REI = mapData("REI");
+
+    const VAB = mapData("VA");
+    const VBC = mapData("VB");
+    const VCA = mapData("VC");
 
     const CA = mapData("CA");
     const CB = mapData("CB");
@@ -42,60 +43,30 @@ function getData(Xmin, Xmax){
     const VART = mapData("VART");
     const VAT = mapData("VAT");
 
-    voltageData = [{name: "Voltage A-B", data: VAB}, {name: "Voltage B-C", data: VBC}, {name: "Voltage C-A", data: VCA}];
+    const CosPhi = mapData("CosPhi");
+    const Freq = mapData("Freq");
+
+    energyData = [{name: "Active Energy", data: EI}, {name: "Reactive Energy", data: REI}];
+    voltageData = [{name: "Voltage A", data: VAB}, {name: "Voltage B", data: VBC}, {name: "Voltage C", data: VCA}];
     currentData = [{name: "Current A", data: CA}, {name: "Current B", data: CB}, {name: "Current C", data: CC}];
     powerData = [{name: "Active Power", data: WT}, {name: "Reactive Power", data: VART}, {name: "Apparent Power", data: VAT}];
+    cosphiData = [{name: "CosPhi", data: CosPhi}];
+    FreqData = [{name: "CosPhi", data: Freq}];
 
+    publishChart("#Energy", energyData, Xmin, Xmax, realtime);
     publishChart("#Voltage", voltageData, Xmin, Xmax);
     publishChart("#Current", currentData, Xmin, Xmax);
     publishChart("#Power", powerData, Xmin, Xmax);
+    publishChart("#ChartCosPhi", cosphiData, Xmin, Xmax);
+    publishChart("#ChartFrequency", FreqData, Xmin, Xmax);
   }
-  
 }
 
-function showToday(){
-  const currentDate = new Date();
-  currentDate.setHours(0, 0, 0, 0);
-  const min = currentDate.getTime();
-  currentDate.setHours(23, 59, 59, 999);
-  const max = currentDate.getTime();
-
-  console.log(min, max);
-  getData(min, max)
-}
-
-function showMonth(){
-  const currentDate = new Date();
-
-  currentDate.setDate(1);
-  currentDate.setHours(0, 0, 0, 0);
-  const min = currentDate.getTime();
-
-  currentDate.setMonth(currentDate.getMonth() + 1, 0);
-  currentDate.setHours(23, 59, 59, 999);
-  const max = currentDate.getTime();
-
-  console.log(min, max);
-  getData(min, max);
-}
-
-function showYear(){
-  const currentDate = new Date();
-
-  currentDate.setMonth(0, 1);
-  currentDate.setHours(0, 0, 0, 0);
-  const min = currentDate.getTime();
-  
-  currentDate.setFullYear(currentDate.getFullYear() + 1, 0, 0);
-  currentDate.setHours(23, 59, 59, 999);
-  const max = currentDate.getTime();
-  
-  console.log(min, max);
-  getData(min, max);
-}
-
-function publishChart(idName, data, Xmin, Xmax){
-  console.log(data[0].data[0].y)
+function publishChart(idName, data, Xmin, Xmax, realtime){
+  if(realtime){
+    Xmin = null;
+    Xmax = null;
+  }
   var options = {
     series: data,
     chart: {
@@ -123,14 +94,17 @@ function publishChart(idName, data, Xmin, Xmax){
       curve: 'smooth',
       width: 2
     },
-    yaxis: {min: (data[0].data[0].y)-10, max: (data[0].data[0].y)+10 },
+    yaxis: {
+      min: (min) => {return min-(0.5*min)},
+      max: (max) => {return max+(0.5*max)}
+    },
     xaxis: {
       type: 'datetime',
       labels: {
         datetimeUTC: false
       },
-      min: Xmin,
-      max: Xmax
+      min: Xmin || undefined,
+      max: Xmax|| undefined
     },
     tooltip: {
       x: {
@@ -140,29 +114,8 @@ function publishChart(idName, data, Xmin, Xmax){
   }
   var chart = new ApexCharts(document.querySelector(idName), options);
   chart.render();
+  chart.updateOptions(options)
 }
-
-// Data for the table
-const tableData = [
-    { parameter: 'Time PM', value: '17.00 WIB', status: 'Normal' },
-    { parameter: 'VAB', value: '221 V', status: 'Normal' },
-    { parameter: 'VBC', value: '222 V', status: 'Normal' },
-    { parameter: 'VCA', value: '223 V', status: 'Normal' },
-    { parameter: 'VAVG', value: '223 V', status: 'Normal' },
-    { parameter: 'CA', value: '20 A', status: 'Normal' },
-    { parameter: 'CB', value: '20 A', status: 'Normal' },
-    { parameter: 'CC', value: '20 A', status: 'Normal' },
-    { parameter: 'CAVG', value: '20 A', status: 'Normal' },
-    { parameter: 'WT', value: '200 W', status: 'Normal' },
-    { parameter: 'VART', value: '0 VAR', status: 'Normal' },
-    { parameter: 'VAT', value: '200 VA', status: 'Normal' },
-    { parameter: 'CosPhi', value: '1.0', status: 'Normal' },
-    { parameter: 'Freq', value: '50 Hz', status: 'Normal' },
-    { parameter: 'EI', value: '100 kWh', status: 'Normal' },
-    { parameter: 'EE', value: '99 kWh', status: 'Normal' },
-    { parameter: 'REI', value: '1 kWh', status: 'Normal' },
-    { parameter: 'REE', value: '0.5 kWh', status: 'Normal' },
-  ];
   
 // Function to set the content for a specific parameter
 function setParameterValue(parameterName) {
@@ -172,18 +125,61 @@ function setParameterValue(parameterName) {
   }
 }
 
-// Set values for all parameters in tableData at regular intervals
 function updateTableData() {
-  tableData.forEach(entry => {
-    const element = document.getElementById(entry.parameter);
-    if (element) {
-      setParameterValue(entry.parameter);
-    } else {
-      console.warn(`Element with ID ${entry.parameter} not found.`);
-    }
+  var ref = db.ref('station2/data');
+
+  ref.orderByKey().limitToLast(1).on('child_added', (snapshot) => {
+    const data = snapshot.val();
+    updateEnergyUsage(data.EI, 10)
+
+    // Loop through each parameter in the data
+    Object.keys(data).forEach(parameter => {
+      const element = document.getElementById(parameter);
+      if (element) {
+        // Update the value in the table cell
+        element.textContent = data[parameter];
+      }
+    });
   });
 }
 
-// Update the table data every 5 seconds (adjust the interval as needed)
+// Assume this function is triggered when you get new data
+function updateEnergyUsage(newKWh, percentageIncrease) {
+  // Select the elements
+  const energy = document.getElementById('energyUsage');
+  const kWhElement = energy.querySelector('h6');
+  energy.querySelector('.text-success').textContent = `${percentageIncrease}%`;
+  energy.querySelector('.text-muted').textContent = 'increase';
+
+  const price = document.getElementById('price');
+  const priceElement = price.querySelector('h6');
+  price.querySelector('.text-success').textContent = `${percentageIncrease}%`;
+  price.querySelector('.text-muted').textContent = 'increase';
+
+  newPrice = Math.round(newKWh*1699.53);
+
+  const formattedPrice = new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR',maximumFractionDigits: 0}).format(newPrice);
+
+  // Update the content
+  kWhElement.textContent = `${newKWh} kWh`;
+  priceElement.textContent = formattedPrice.replace(/\s/g, '');
+}
+
+
 updateTableData();
 setInterval(updateTableData, 5000);
+
+$("#datepicker").daterangepicker({
+  "opens": "left",
+  ranges: {
+  "Today": [moment(), moment()],
+  "Yesterday": [moment().subtract(1, "days"), moment().subtract(1, "days")],
+  "Last 7 Days": [moment().subtract(6, "days"), moment()],
+  "Last 30 Days": [moment().subtract(29, "days"), moment()],
+  "This Month": [moment().startOf("month"), moment().endOf("month")]
+  }
+}, function(start, end, label) {
+  console.log('New date range selected: ' + start + ' to ' + end + ' (predefined range: ' + label + ')');
+  document.getElementById("dateshow").textContent = '/' + label;
+  getData(Number(start), Number(end), false)
+});

@@ -26,6 +26,11 @@
   <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
 
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
@@ -67,11 +72,6 @@
               <i class="bi bi-circle"></i><span>Dashboard</span>
             </a>
           </li>
-          <li>
-            <a href="dashboard-detailed.html">
-              <i class="bi bi-circle"></i><span>Dashboard-Detailed</span>
-            </a>
-          </li>
         </ul>
       </li><!-- End Dashboard Nav -->
 
@@ -81,27 +81,27 @@
         </a>
         <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="room-101.html">
+            <a href="station-1.html">
               <i class="bi bi-circle"></i><span>Station 1</span>
             </a>
           </li>
           <li>
-            <a href="room-102.html">
+            <a href="#">
               <i class="bi bi-circle"></i><span>Station 2</span>
             </a>
           </li>
           <li>
-            <a href="room-103.html">
+            <a href="#">
               <i class="bi bi-circle"></i><span>Station 3</span>
             </a>
           </li>
           <li>
-            <a href="room-104.html">
+            <a href="#">
               <i class="bi bi-circle"></i><span>Station 4</span>
             </a>
           </li>
           <li>
-            <a href="room-105.html">
+            <a href="#">
               <i class="bi bi-circle"></i><span>Station 5</span>
             </a>
           </li>
@@ -153,10 +153,9 @@
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                       <i class="bi bi-lightning-charge"></i>
                     </div>
-                    <div class="ps-3">
-                      <h6>145 kWh</h6>
-                      <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
-
+                    <div class="ps-3" id="energyUsage">
+                      <h6>- kWh</h6>
+                      <span class="text-success small pt-1 fw-bold">-%</span> <span class="text-muted small pt-2 ps-1">increase</span>
                     </div>
                   </div>
                 </div>
@@ -188,9 +187,9 @@
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                       <i class="bi bi-cash"></i>
                     </div>
-                    <div class="ps-3">
-                      <h6>Rp35,264</h6>
-                      <span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+                    <div class="ps-3" id="price">
+                      <h6>Rp-</h6>
+                      <span class="text-success small pt-1 fw-bold">-%</span> <span class="text-muted small pt-2 ps-1">increase</span>
 
                     </div>
                   </div>
@@ -204,8 +203,11 @@
               <div class="card">
 
                 <div class="filter">
-                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                  <!-- <input type="date" id="myDate1" value="2024-01-01">
+                  <a> To </a>
+                  <input type="date" id="myDate2" value="2024-01-30"> -->
+                  <a class="icon" id="datepicker"><i class="bi bi-three-dots"></i></a>
+                  <!-- <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                     <li class="dropdown-header text-start">
                       <h6>Filter</h6>
                     </li>
@@ -213,16 +215,59 @@
                     <li><a class="dropdown-item" href="#" onclick="showToday()">Today</a></li>
                     <li><a class="dropdown-item" href="#" onclick="showMonth()">This Month</a></li>
                     <li><a class="dropdown-item" href="#" onclick="showYear()">This Year</a></li>
-                  </ul>
+                  </ul> -->
                 </div>
+
                 <div class="card-body">
-                  <!-- <h5 class="card-title">Reports <input type="date" id="myDate" value="2022-09-18"> <button onclick="myFunction()">Show</i></button></h5> -->
-                  <h5 class="card-title">Voltage <span>/Today</span></h5>
-                  <div id="Voltage"></div>
-                  <h5 class="card-title">Current <span>/Today</span></h5>
-                  <div id="Current"></div>
-                  <h5 class="card-title">Power <span>/Today</span></h5>
-                  <div id="Power"></div>
+                  <h5 class="card-title">Chart Data</h5>
+    
+                  <!-- Default Tabs -->
+                  <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Energy</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Voltage</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Current</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link" id="power-tab" data-bs-toggle="tab" data-bs-target="#power" type="button" role="tab" aria-controls="power" aria-selected="false">Power</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link" id="power-tab" data-bs-toggle="tab" data-bs-target="#tabcosphi" type="button" role="tab" aria-controls="power" aria-selected="false">PF</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link" id="power-tab" data-bs-toggle="tab" data-bs-target="#tabfreq" type="button" role="tab" aria-controls="power" aria-selected="false">Frequency</button>
+                    </li>
+                  </ul>
+                  <div class="tab-content pt-2" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                      <h5 class="card-title">Energy<span id="dateshow">/-</span></h5>
+                      <div id="Energy"></div>
+                    </div>
+                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                      <h5 class="card-title">Voltage<span id="dateshow">/-</span></h5>
+                      <div id="Voltage"></div>
+                    </div>
+                    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                      <h5 class="card-title">Current<span id="dateshow">/-</span></h5>
+                      <div id="Current"></div>
+                    </div>
+                    <div class="tab-pane fade" id="power" role="tabpanel" aria-labelledby="contact-tab">
+                      <h5 class="card-title">Power<span id="dateshow">/-</span></h5>
+                      <div id="Power"></div>
+                    </div>
+                    <div class="tab-pane fade" id="tabcosphi" role="tabpanel" aria-labelledby="contact-tab">
+                      <h5 class="card-title">Power Factor<span id="dateshow">/-</span></h5>
+                      <div id="ChartCosPhi"></div>
+                    </div>
+                    <div class="tab-pane fade" id="tabfreq" role="tabpanel" aria-labelledby="contact-tab">
+                      <h5 class="card-title">Frequency<span id="dateshow">/-</span></h5>
+                      <div id="ChartFrequency"></div>
+                    </div>
+                  </div><!-- End Default Tabs -->
                 </div>
 
               </div>
@@ -267,18 +312,18 @@
                       <td><span class="badge bg-success">Normal</span></td>
                     </tr>
                     <tr>
-                      <th>Voltage A-B</th>
-                      <td id="VAB">-</td>
+                      <th>Voltage A</th>
+                      <td id="VA">-</td>
                       <td><span class="badge bg-success">Normal</span></td>
                     </tr>
                     <tr>
-                      <th>Voltage B-C</th>
-                      <td id="VBC">-</td>
+                      <th>Voltage B</th>
+                      <td id="VB">-</td>
                       <td><span class="badge bg-success">Normal</span></td>
                     </tr>
                     <tr>
-                      <th>Voltage C-A</th>
-                      <td id="VCA">-</td>
+                      <th>Voltage C</th>
+                      <td id="VC">-</td>
                       <td><span class="badge bg-success">Normal</span></td>
                     </tr>
                     <tr>

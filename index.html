@@ -26,6 +26,11 @@
   <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
 
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
@@ -37,7 +42,7 @@
   ======================================================== -->
 </head>
 
-<body onload="myFunction()">
+<body>
 
   <!-- ======= Header ======= -->
   <header id="header" class="header fixed-top d-flex align-items-center">
@@ -67,11 +72,6 @@
               <i class="bi bi-circle"></i><span>Dashboard</span>
             </a>
           </li>
-          <li>
-            <a href="dashboard-detailed.html">
-              <i class="bi bi-circle"></i><span>Dashboard-Detailed</span>
-            </a>
-          </li>
         </ul>
       </li><!-- End Dashboard Nav -->
 
@@ -86,22 +86,22 @@
             </a>
           </li>
           <li>
-            <a href="station-2.html">
+            <a href="#">
               <i class="bi bi-circle"></i><span>Station 2</span>
             </a>
           </li>
           <li>
-            <a href="station-3.html">
+            <a href="#">
               <i class="bi bi-circle"></i><span>Station 3</span>
             </a>
           </li>
           <li>
-            <a href="station-4.html">
+            <a href="#">
               <i class="bi bi-circle"></i><span>Station 4</span>
             </a>
           </li>
           <li>
-            <a href="station-5.html">
+            <a href="#">
               <i class="bi bi-circle"></i><span>Station 5</span>
             </a>
           </li>
@@ -153,10 +153,9 @@
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                       <i class="bi bi-lightning-charge"></i>
                     </div>
-                    <div class="ps-3">
-                      <h6>145 kWh</h6>
-                      <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
-
+                    <div class="ps-3" id="energyUsage">
+                      <h6>- kWh</h6>
+                      <span class="text-success small pt-1 fw-bold">-%</span> <span class="text-muted small pt-2 ps-1">increase</span>
                     </div>
                   </div>
                 </div>
@@ -188,9 +187,9 @@
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                       <i class="bi bi-cash"></i>
                     </div>
-                    <div class="ps-3">
-                      <h6>Rp35,264</h6>
-                      <span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+                    <div class="ps-3" id="price">
+                      <h6>Rp-</h6>
+                      <span class="text-success small pt-1 fw-bold">-%</span> <span class="text-muted small pt-2 ps-1">increase</span>
 
                     </div>
                   </div>
@@ -204,20 +203,59 @@
               <div class="card">
 
                 <div class="filter">
-                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                    <li class="dropdown-header text-start">
-                      <h6>Filter</h6>
-                    </li>
-
-                    <li><a class="dropdown-item" href="#">Today</a></li>
-                    <li><a class="dropdown-item" href="#">This Month</a></li>
-                    <li><a class="dropdown-item" href="#">This Year</a></li>
-                  </ul>
+                  <a class="icon" id="datepicker"><i class="bi bi-three-dots"></i></a>
                 </div>
+
                 <div class="card-body">
-                  <h5 class="card-title">Reports <input type="date" id="myDate" value="2022-09-18"> <button onclick="myFunction()">Show</i></button></h5>
-                  <div id="R201"></div>
+                  <h5 class="card-title">Chart Data</h5>
+    
+                  <!-- Default Tabs -->
+                  <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#tab1" type="button" role="tab" aria-controls="home" aria-selected="true">Station1</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#tab2" type="button" role="tab" aria-controls="profile" aria-selected="false">Station2</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#tab3" type="button" role="tab" aria-controls="contact" aria-selected="false">Station3</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link" id="power-tab" data-bs-toggle="tab" data-bs-target="#tab4" type="button" role="tab" aria-controls="power" aria-selected="false">Station4</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link" id="power-tab" data-bs-toggle="tab" data-bs-target="#tab5" type="button" role="tab" aria-controls="power" aria-selected="false">Station5</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link" id="power-tab" data-bs-toggle="tab" data-bs-target="#tab6" type="button" role="tab" aria-controls="power" aria-selected="false">Station6</button>
+                    </li>
+                  </ul>
+                  <div class="tab-content pt-2" id="myTabContent">
+                    <div class="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="home-tab">
+                      <h5 class="card-title">Station1<span id="dateshow">/-</span></h5>
+                      <div id="Energy"></div>
+                    </div>
+                    <div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="profile-tab">
+                      <h5 class="card-title">Station2<span id="dateshow">/-</span></h5>
+                      <div id="Energy2"></div>
+                    </div>
+                    <div class="tab-pane fade" id="tab3" role="tabpanel" aria-labelledby="contact-tab">
+                      <h5 class="card-title">Station3<span id="dateshow">/-</span></h5>
+                      <div id="Energy3"></div>
+                    </div>
+                    <div class="tab-pane fade" id="tab4" role="tabpanel" aria-labelledby="contact-tab">
+                      <h5 class="card-title">Station4<span id="dateshow">/-</span></h5>
+                      <div id="Energy4"></div>
+                    </div>
+                    <div class="tab-pane fade" id="tab5" role="tabpanel" aria-labelledby="contact-tab">
+                      <h5 class="card-title">Station5<span id="dateshow">/-</span></h5>
+                      <div id="Energy5"></div>
+                    </div>
+                    <div class="tab-pane fade" id="tab6" role="tabpanel" aria-labelledby="contact-tab">
+                      <h5 class="card-title">Station6<span id="dateshow">/-</span></h5>
+                      <div id="Energy6"></div>
+                    </div>
+                  </div><!-- End Default Tabs -->
                 </div>
 
               </div>
@@ -247,35 +285,47 @@
 
               <div class="card-body">
                 <h5 class="card-title">Recent Usage <span>| Today</span></h5>
-
                 <table class="table table-borderless datatable">
                   <thead>
                     <tr>
-                      <th scope="col">Station</th>
-                      <th scope="col">Location</th>
-                      <th scope="col">Energy</th>
-                      <th scope="col">Price</th>
+                      <th scope="col">Parameters</th>
+                      <th scope="col">Value</th>
                       <th scope="col">Status</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <th scope="row"><a href="#">1</a></th>
-                      <td>Graha Pertamina</td>
-                      <td>10.1 KWh</td>
-                      <td>Rp53.000</td>
-                      <td><span class="badge bg-success">Normal</span></td>
+                      <th>Station1</th>
+                      <td id="station1">-</td>
+                      <td><span class="badge bg-success">Connected</span></td>
                     </tr>
                     <tr>
-                      <th scope="row"><a href="#">2<a></th>
-                      <td>SPBU Kebayoran Lama</td>
-                      <td>9.1 KWh</td>
-                      <td>Rp45.000</td>
-                      <td><span class="badge bg-warning">Warning</span></td>
+                      <th>Station2</th>
+                      <td id="station2">-</td>
+                      <td><span class="badge bg-danger">Error</span></td>
+                    </tr>
+                    <tr>
+                      <th>Station3</th>
+                      <td id="station3">-</td>
+                      <td><span class="badge bg-danger">Error</span></td>
+                    </tr>
+                    <tr>
+                      <th>Station4</th>
+                      <td id="station4">-</td>
+                      <td><span class="badge bg-danger">Error</span></td>
+                    </tr>
+                    <tr>
+                      <th>Station5</th>
+                      <td id="station5">-</td>
+                      <td><span class="badge bg-danger">Error</span></td>
+                    </tr>
+                    <tr>
+                      <th>Station6</th>
+                      <td id="station6">-</td>
+                      <td><span class="badge bg-danger">Error</span></td>
                     </tr>
                   </tbody>
                 </table>
-
               </div>
 
             </div>
@@ -316,7 +366,8 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
-  <script src="assets/js/data.js"></script>
+  <!-- <script src="assets/js/data.js"></script> -->
+  <script src="assets/js/station.js"></script>
 
 </body>
 
