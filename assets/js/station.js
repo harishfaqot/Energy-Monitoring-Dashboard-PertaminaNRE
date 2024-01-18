@@ -10,8 +10,29 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 var db = firebase.database();
 
-document.getElementById("dateshow").textContent = '/Today';
+var elements = document.getElementsByClassName("dateshow");
+for (var i = 0; i < elements.length; i++) {
+    elements[i].textContent = '/Today';
+}
 getData(new Date().getTime() - (3600*24*1000), new Date().getTime(), true);
+
+$("#datepicker").daterangepicker({
+  "opens": "left",
+  ranges: {
+  "Today": [moment(), moment()],
+  "Yesterday": [moment().subtract(1, "days"), moment().subtract(1, "days")],
+  "Last 7 Days": [moment().subtract(6, "days"), moment()],
+  "Last 30 Days": [moment().subtract(29, "days"), moment()],
+  "This Month": [moment().startOf("month"), moment().endOf("month")]
+  }
+}, function(start, end, label) {
+  console.log('New date range selected: ' + start + ' to ' + end + ' (predefined range: ' + label + ')');
+  // document.getElementsByClassName("dateshow").textContent = '/' + label;
+  for (var i = 0; i < elements.length; i++) {
+      elements[i].textContent = '/' + label;
+  }
+  getData(Number(start), Number(end), false)
+});
 
 function getData(Xmin, Xmax, realtime){
   var ref = db.ref('station2/data');
@@ -168,18 +189,3 @@ function updateEnergyUsage(newKWh, percentageIncrease) {
 
 updateTableData();
 setInterval(updateTableData, 5000);
-
-$("#datepicker").daterangepicker({
-  "opens": "left",
-  ranges: {
-  "Today": [moment(), moment()],
-  "Yesterday": [moment().subtract(1, "days"), moment().subtract(1, "days")],
-  "Last 7 Days": [moment().subtract(6, "days"), moment()],
-  "Last 30 Days": [moment().subtract(29, "days"), moment()],
-  "This Month": [moment().startOf("month"), moment().endOf("month")]
-  }
-}, function(start, end, label) {
-  console.log('New date range selected: ' + start + ' to ' + end + ' (predefined range: ' + label + ')');
-  document.getElementById("dateshow").textContent = '/' + label;
-  getData(Number(start), Number(end), false)
-});
